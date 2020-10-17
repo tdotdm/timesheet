@@ -1,13 +1,11 @@
-package com.github.tdotdm.timesheet;
+package com.github.tdotdm.timesheet.checkin;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class TimesheetApplicationTests {
-
-	@Test
-	void contextLoads() {
-	}
-
+class MainTests {
+    @Test
+    void contextLoads() {
+    }
 }
