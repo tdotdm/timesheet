@@ -16,7 +16,7 @@ public class StartupListener implements CommandLineRunner {
 
     @Override
     public void run(final String... args) {
-        final boolean workingDirectoryIsReady = workingDirectoryIsReady();
+        final boolean workingDirectoryIsReady = isWorkingDirectoryReady();
         if (workingDirectoryIsReady) {
             final Timesheet timesheet = timesheetService.read();
             timesheet.addRecord(Record.newInRecord());
@@ -26,7 +26,7 @@ public class StartupListener implements CommandLineRunner {
         }
     }
 
-    private boolean workingDirectoryIsReady() {
+    private boolean isWorkingDirectoryReady() {
         try {
             log.info("Searching for timesheet.");
             final File file = new File("bin/timesheet.json");
