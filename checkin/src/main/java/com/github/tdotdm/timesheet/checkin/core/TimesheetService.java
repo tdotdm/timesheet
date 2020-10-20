@@ -7,6 +7,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import java.io.*;
+import java.util.List;
+import java.util.Optional;
 
 @Slf4j
 @Component
@@ -42,5 +44,15 @@ public class TimesheetService {
 
         log.error("Timesheet either empty or non-existent; returning a new instance.");
         return new Timesheet();
+    }
+
+    public Optional<Record> getLatestRecord(final Timesheet timesheet) {
+        final List<Record> records = timesheet.getRecords();
+        if (records.isEmpty()) {
+            return Optional.empty();
+        }
+
+        final Record latestRecord = records.get(records.size() - 1);
+        return Optional.ofNullable(latestRecord);
     }
 }
