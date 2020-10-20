@@ -18,7 +18,7 @@ public class TimesheetService {
 
     private final Gson gson = new GsonBuilder().create();
 
-    public void create(final Timesheet timesheet) {
+    public void write(final Timesheet timesheet) {
         try {
             log.info("Writing timesheet to '{}'.", TIMESHEET_LOCATION);
             final Writer fileWriter = new FileWriter(TIMESHEET_LOCATION);
