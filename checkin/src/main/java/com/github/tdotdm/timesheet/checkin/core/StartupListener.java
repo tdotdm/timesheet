@@ -16,18 +16,20 @@ import java.util.Optional;
 @Component
 @RequiredArgsConstructor
 public class StartupListener implements CommandLineRunner {
+    private static final String TIMESHEET_LOCATION = "bin/timesheet.json";
+
     private final TimesheetService timesheetService;
 
     @Override
     public void run(final String... args) {
         final boolean workingDirectoryIsReady = isWorkingDirectoryReady();
         if (workingDirectoryIsReady) {
-            //Read existing timesheet.
+            //Read existing Timesheet
             final Timesheet timesheet = timesheetService.read();
 
-            //Check if new record is required
             final Optional<Record> latestRecord = timesheetService.getLatestRecord(timesheet);
             if (latestRecord.isPresent()) {
+                //Check if new Record is required
                 final Record record = latestRecord.get();
                 final LocalDateTime now = LocalDateTime.now();
                 final WeekFields weekFields = WeekFields.of(Locale.UK);
@@ -36,49 +38,46 @@ public class StartupListener implements CommandLineRunner {
                 final int recordWeekNumber = record.getWeekNumber();
 
                 if (recordWeekNumber != nowWeekNumber) {
-                    //new record
                     final Record newRecord = new Record(now, nowWeekNumber, now.getDayOfWeek());
                     timesheet.addRecord(newRecord);
                 }
             } else {
+                //Create new Record
                 final LocalDateTime now = LocalDateTime.now();
                 final WeekFields weekFields = WeekFields.of(Locale.UK);
                 final int nowWeekNumber = now.get(weekFields.weekOfWeekBasedYear());
 
-                //new record
                 final Record newRecord = new Record(now, nowWeekNumber, now.getDayOfWeek());
                 timesheet.addRecord(newRecord);
             }
 
-            //Update latest record with new Entry
-            final Optional<Record> optionalNewLatestRecord = timesheetService.getLatestRecord(timesheet);
-            if (optionalNewLatestRecord.isPresent()) {
-                final Entry entry = new Entry(Action.IN, LocalDateTime.now());
-                final Record newLatestRecord = optionalNewLatestRecord.get();
-                newLatestRecord.addEntry(entry);
-            } else {
-                throw new IllegalStateException("This should never happen.");
-            }
+            //Update latest Record with a new Entry
+            timesheetService
+                    .getLatestRecord(timesheet)
+                    .ifPresent(record -> {
+                        final Entry entry = new Entry(Action.IN, LocalDateTime.now());
+                        record.addEntry(entry);
 
-            //Save
-            timesheetService.write(timesheet);
+                        //Write latest changes
+                        timesheetService.write(timesheet);
+                    });
         } else {
-            log.error("Cannot update timesheet; application stopping.");
+            log.error("Problem encountered whilst reading Timesheet. Application stopping.");
         }
     }
 
     private boolean isWorkingDirectoryReady() {
         try {
-            log.info("Searching for timesheet.");
-            final File file = new File("bin/timesheet.json");
+            log.info("Looking for your local timesheet.");
+            final File file = new File(TIMESHEET_LOCATION);
             if (!file.exists()) {
-                log.error("Timesheet not found; creating a new one.");
+                log.error("Cannot find Timesheet; creating a new one.");
                 return file.createNewFile();
             }
 
             return true;
         } catch (final IOException e) {
-            log.error("Cannot create timesheet.");
+            log.error("Cannot create Timesheet.");
         }
 
         return false;
