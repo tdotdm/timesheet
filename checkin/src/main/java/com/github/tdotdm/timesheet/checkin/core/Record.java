@@ -1,28 +1,34 @@
 package com.github.tdotdm.timesheet.checkin.core;
 
-import java.util.Date;
+import lombok.Getter;
+
+import java.time.DayOfWeek;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
+@Getter
 public final class Record {
+    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
     private UUID id;
-    private Action action;
-    private Date date;
+    private String dateCreated;
+    private int weekNumber;
+    private DayOfWeek dayOfWeek;
+    private final List<Entry> entries = new ArrayList<>();
 
-    public static Record newInRecord() {
-        final Record record = new Record();
-        record.id = UUID.randomUUID();
-        record.action = Action.IN;
-        record.date = new Date();
-
-        return record;
+    public Record(final LocalDateTime timestamp,
+                  final int weekNumber,
+                  final DayOfWeek dayOfWeek) {
+        this.id = UUID.randomUUID();
+        this.dateCreated = timestamp.format(DATE_TIME_FORMATTER);
+        this.weekNumber = weekNumber;
+        this.dayOfWeek = dayOfWeek;
     }
 
-    public static Record newOutRecord() {
-        final Record record = new Record();
-        record.id = UUID.randomUUID();
-        record.action = Action.OUT;
-        record.date = new Date();
-
-        return record;
+    public void addEntry(final Entry entry) {
+        this.entries.add(entry);
     }
 }
