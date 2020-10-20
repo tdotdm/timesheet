@@ -13,7 +13,7 @@ import java.util.Optional;
 @Slf4j
 @Component
 @RequiredArgsConstructor
-public class TimesheetService {
+public final class TimesheetService {
     private static final String TIMESHEET_LOCATION = "bin/timesheet.json";
 
     private final Gson gson = new GsonBuilder().create();
