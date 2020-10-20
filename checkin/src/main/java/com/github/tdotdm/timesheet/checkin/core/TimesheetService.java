@@ -20,20 +20,20 @@ public final class TimesheetService {
 
     public void write(final Timesheet timesheet) {
         try {
-            log.info("Writing timesheet to '{}'.", TIMESHEET_LOCATION);
+            log.info("Writing Timesheet to '{}'.", TIMESHEET_LOCATION);
             final Writer fileWriter = new FileWriter(TIMESHEET_LOCATION);
             gson.toJson(timesheet, fileWriter);
             fileWriter.flush();
             fileWriter.close();
-            log.info("Timesheet successfully updated.");
+            log.info("Timesheet successfully written.");
         } catch (final IOException e) {
-            //ignore
+            log.error("Error encountered whilst writing.");
         }
     }
 
     public Timesheet read() {
         try {
-            log.info("Reading timesheet from '{}'.", TIMESHEET_LOCATION);
+            log.info("Reading Timesheet from '{}'.", TIMESHEET_LOCATION);
             final Timesheet timesheet = gson.fromJson(new FileReader(TIMESHEET_LOCATION), Timesheet.class);
             if (timesheet != null) {
                 return timesheet;
@@ -42,7 +42,7 @@ public final class TimesheetService {
             //ignore
         }
 
-        log.error("Timesheet either empty or non-existent; returning a new instance.");
+        log.error("Timesheet either empty or non-existent; no Records will be available.");
         return new Timesheet();
     }
 
