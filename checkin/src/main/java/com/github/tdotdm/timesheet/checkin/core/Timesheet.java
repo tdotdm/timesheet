@@ -5,7 +5,7 @@ import lombok.Getter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Timesheet {
+public final class Timesheet {
     @Getter
     private final List<Record> records = new ArrayList<>();
 
