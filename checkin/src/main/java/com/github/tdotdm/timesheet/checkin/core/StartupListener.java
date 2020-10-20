@@ -16,8 +16,7 @@ import java.util.Optional;
 @Component
 @RequiredArgsConstructor
 public class StartupListener implements CommandLineRunner {
-    private static final String TIMESHEET_LOCATION = "bin/timesheet.json";
-
+    private final LocationService locationService;
     private final TimesheetService timesheetService;
 
     @Override
@@ -59,7 +58,7 @@ public class StartupListener implements CommandLineRunner {
                         final Entry entry = new Entry(Action.IN, LocalDateTime.now());
                         record.addEntry(entry);
 
-                        log.info("Writing latest Timesheet to '{}'.", TIMESHEET_LOCATION);
+                        log.info("Writing latest Timesheet to disk.");
                         timesheetService.write(timesheet);
                     });
         } else {
@@ -68,9 +67,18 @@ public class StartupListener implements CommandLineRunner {
     }
 
     private boolean isWorkingDirectoryReady() {
+        final Optional<String> optionalTimesheetLocation = locationService.getTimesheetLocation();
+        if (optionalTimesheetLocation.isEmpty()) {
+            log.error("Cannot get Timesheet's location.");
+
+            return false;
+        }
+
+        final String timesheetLocation = optionalTimesheetLocation.get();
+        log.info("Found Timesheet; location is '{}'.", timesheetLocation);
         try {
             log.info("Looking for local Timesheet.");
-            final File file = new File(TIMESHEET_LOCATION);
+            final File file = new File(timesheetLocation);
             if (!file.exists()) {
                 log.error("Cannot find Timesheet; creating a new one instead.");
                 return file.createNewFile();

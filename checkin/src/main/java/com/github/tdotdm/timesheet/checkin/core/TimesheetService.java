@@ -14,27 +14,44 @@ import java.util.Optional;
 @Component
 @RequiredArgsConstructor
 public final class TimesheetService {
-    private static final String TIMESHEET_LOCATION = "bin/timesheet.json";
-
     private final Gson gson = new GsonBuilder().create();
 
-    public void write(final Timesheet timesheet) {
+    private final LocationService locationService;
+
+    public boolean write(final Timesheet timesheet) {
+        final Optional<String> optionalTimesheetLocation = locationService.getTimesheetLocation();
+        if (optionalTimesheetLocation.isEmpty()) {
+            log.error("Cannot get Timesheet's location.");
+            return false;
+        }
+
         try {
-            log.info("Writing Timesheet to '{}'.", TIMESHEET_LOCATION);
-            final Writer fileWriter = new FileWriter(TIMESHEET_LOCATION);
+            final String timesheetLocation = optionalTimesheetLocation.get();
+            log.info("Writing Timesheet to '{}'.", timesheetLocation);
+            final Writer fileWriter = new FileWriter(timesheetLocation);
             gson.toJson(timesheet, fileWriter);
             fileWriter.flush();
             fileWriter.close();
             log.info("Timesheet successfully written.");
+            return true;
         } catch (final IOException e) {
             log.error("Error encountered whilst writing.");
         }
+
+        return false;
     }
 
     public Timesheet read() {
+        final Optional<String> optionalTimesheetLocation = locationService.getTimesheetLocation();
+        if (optionalTimesheetLocation.isEmpty()) {
+            log.error("Cannot read Timesheet's location.");
+            return new Timesheet();
+        }
+
         try {
-            log.info("Reading Timesheet from '{}'.", TIMESHEET_LOCATION);
-            final Timesheet timesheet = gson.fromJson(new FileReader(TIMESHEET_LOCATION), Timesheet.class);
+            final String timesheetLocation = optionalTimesheetLocation.get();
+            log.info("Reading Timesheet from '{}'.", timesheetLocation);
+            final Timesheet timesheet = gson.fromJson(new FileReader(timesheetLocation), Timesheet.class);
             if (timesheet != null) {
                 return timesheet;
             }
