@@ -7,10 +7,10 @@ import java.util.Optional;
 
 @Component
 @ConditionalOnProperty(value = "com.github.tdotdm.timesheet.classpath-context", havingValue = "true")
-public class ClasspathLocationService implements LocationService {
+class ClasspathLocationService implements LocationService {
     private final String fileLocation;
 
-    public ClasspathLocationService(final ApplicationProperties applicationProperties) {
+    ClasspathLocationService(final ApplicationProperties applicationProperties) {
         this.fileLocation = applicationProperties.getClasspathFileLocation();
     }
 

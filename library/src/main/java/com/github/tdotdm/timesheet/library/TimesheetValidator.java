@@ -8,8 +8,8 @@ import java.util.List;
 
 @Slf4j
 @Component
-public class TimesheetValidator {
-    public List<String> validate(final Timesheet timesheet) {
+class TimesheetValidator {
+    List<String> validate(final Timesheet timesheet) {
         log.info("Validating Timesheet...");
         final List<Record> records = timesheet.getRecords();
         final List<String> errors = new ArrayList<>();

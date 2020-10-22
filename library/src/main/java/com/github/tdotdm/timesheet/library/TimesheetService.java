@@ -13,13 +13,13 @@ import java.util.Optional;
 @Slf4j
 @Component
 @RequiredArgsConstructor
-public final class TimesheetService {
+final class TimesheetService {
     private final Gson gson = new GsonBuilder().create();
 
     private final LocationService locationService;
     private final TimesheetValidator timesheetValidator;
 
-    public boolean write(final Timesheet timesheet) {
+    boolean write(final Timesheet timesheet) {
         final Optional<String> optionalTimesheetLocation = locationService.getTimesheetLocation();
         if (optionalTimesheetLocation.isEmpty()) {
             log.error("Cannot get Timesheet's location.");

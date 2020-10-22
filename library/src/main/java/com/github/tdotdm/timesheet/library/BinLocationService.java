@@ -7,10 +7,10 @@ import java.util.Optional;
 
 @Component
 @ConditionalOnProperty(value = "com.github.tdotdm.timesheet.classpath-context", havingValue = "false")
-public class BinLocationService implements LocationService {
+class BinLocationService implements LocationService {
     private final String fileLocation;
 
-    public BinLocationService(final ApplicationProperties applicationProperties) {
+    BinLocationService(final ApplicationProperties applicationProperties) {
         this.fileLocation = applicationProperties.getBinFileLocation();
     }
 

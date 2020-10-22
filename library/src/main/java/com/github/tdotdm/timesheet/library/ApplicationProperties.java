@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
 @Data
 @Configuration
 @ConfigurationProperties(prefix = "com.github.tdotdm.timesheet")
-public class ApplicationProperties {
+class ApplicationProperties {
     private String classpathFileLocation;
     private String binFileLocation;
 }
