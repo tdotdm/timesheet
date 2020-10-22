@@ -6,6 +6,7 @@
     <modules>
         <module>checkin</module>
         <module>library</module>
+        <module>checkout</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
