@@ -17,11 +17,18 @@ public final class TimesheetService {
     private final Gson gson = new GsonBuilder().create();
 
     private final LocationService locationService;
+    private final TimesheetValidator timesheetValidator;
 
     public boolean write(final Timesheet timesheet) {
         final Optional<String> optionalTimesheetLocation = locationService.getTimesheetLocation();
         if (optionalTimesheetLocation.isEmpty()) {
             log.error("Cannot get Timesheet's location.");
+            return false;
+        }
+
+        final List<String> errors = timesheetValidator.validate(timesheet);
+        if (!errors.isEmpty()) {
+            log.error("Invalid Timesheet:'{}'.", errors.toString());
             return false;
         }
 
