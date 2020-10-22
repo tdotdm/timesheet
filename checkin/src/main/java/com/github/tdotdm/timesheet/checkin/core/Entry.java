@@ -1,8 +1,11 @@
 package com.github.tdotdm.timesheet.checkin.core;
 
+import lombok.Getter;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+@Getter
 public final class Entry {
     private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("HH:mm:ss");
 
