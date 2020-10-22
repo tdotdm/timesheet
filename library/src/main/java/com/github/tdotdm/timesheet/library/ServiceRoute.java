@@ -2,7 +2,6 @@ package com.github.tdotdm.timesheet.library;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
@@ -15,12 +14,11 @@ import java.util.Optional;
 @Slf4j
 @Component
 @RequiredArgsConstructor
-public class StartupListener implements CommandLineRunner {
+public class ServiceRoute {
     private final LocationService locationService;
     private final TimesheetService timesheetService;
 
-    @Override
-    public void run(final String... args) {
+    public void run(final Action action) {
         final boolean workingDirectoryIsReady = isWorkingDirectoryReady();
         if (workingDirectoryIsReady) {
             log.info("Reading Timesheet.");
@@ -55,7 +53,7 @@ public class StartupListener implements CommandLineRunner {
             timesheetService
                     .getLatestRecord(timesheet)
                     .ifPresent(record -> {
-                        final Entry entry = new Entry(Action.IN, LocalDateTime.now());
+                        final Entry entry = new Entry(action, LocalDateTime.now());
                         record.addEntry(entry);
 
                         log.info("Writing latest Timesheet to disk.");
