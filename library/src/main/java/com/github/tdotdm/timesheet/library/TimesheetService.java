@@ -51,7 +51,7 @@ final class TimesheetService {
     public Timesheet read() {
         final Optional<String> optionalTimesheetLocation = locationService.getTimesheetLocation();
         if (optionalTimesheetLocation.isEmpty()) {
-            log.error("Cannot read Timesheet's location.");
+            log.error("Cannot get Timesheet's location.");
             return new Timesheet();
         }
 
