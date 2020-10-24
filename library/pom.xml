@@ -12,7 +12,7 @@
     <groupId>com.github.tdotdm.timesheet</groupId>
     <artifactId>library</artifactId>
     <version>${parent.version}</version>
-    
+
     <build>
         <finalName>${artifactId}</finalName>
     </build>
