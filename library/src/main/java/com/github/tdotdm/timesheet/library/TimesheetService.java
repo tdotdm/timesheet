@@ -13,6 +13,7 @@ import java.util.Optional;
 @Slf4j
 @Component
 @RequiredArgsConstructor
+@SuppressWarnings("MultipleStringLiterals")
 final class TimesheetService {
     private final Gson gson = new GsonBuilder().create();
 
