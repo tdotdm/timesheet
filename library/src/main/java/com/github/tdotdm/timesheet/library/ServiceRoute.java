@@ -21,7 +21,6 @@ public class ServiceRoute {
     public void run(final Action action) {
         final boolean workingDirectoryIsReady = isWorkingDirectoryReady();
         if (workingDirectoryIsReady) {
-            log.info("Reading Timesheet.");
             final Timesheet timesheet = timesheetService.read();
 
             final Optional<Record> latestRecord = timesheetService.getLatestRecord(timesheet);
