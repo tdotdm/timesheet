@@ -19,7 +19,7 @@ class BinLocationService implements LocationService {
         try {
             final String userDir = System.getProperty("user.dir");
             return Optional.of(userDir + fileLocation);
-        } catch (final Exception e) {
+        } catch (final SecurityException e) {
             return Optional.empty();
         }
     }
