@@ -13,6 +13,14 @@
     <artifactId>report</artifactId>
     <version>${parent.version}</version>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.github.tdotdm.timesheet</groupId>
+            <artifactId>library</artifactId>
+            <version>${version}</version>
+        </dependency>
+    </dependencies>
+
     <build>
         <finalName>${artifactId}</finalName>
         <plugins>
