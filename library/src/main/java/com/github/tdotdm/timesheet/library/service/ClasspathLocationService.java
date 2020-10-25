@@ -1,5 +1,6 @@
-package com.github.tdotdm.timesheet.library;
+package com.github.tdotdm.timesheet.library.service;
 
+import com.github.tdotdm.timesheet.library.configuration.ApplicationProperties;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
 
@@ -7,10 +8,10 @@ import java.util.Optional;
 
 @Component
 @ConditionalOnProperty(value = "com.github.tdotdm.timesheet.classpath-context", havingValue = "true")
-class ClasspathLocationService implements LocationService {
+public final class ClasspathLocationService implements LocationService {
     private final String fileLocation;
 
-    ClasspathLocationService(final ApplicationProperties applicationProperties) {
+    public ClasspathLocationService(final ApplicationProperties applicationProperties) {
         this.fileLocation = applicationProperties.getClasspathFileLocation();
     }
 

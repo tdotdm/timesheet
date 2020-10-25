@@ -1,5 +1,7 @@
-package com.github.tdotdm.timesheet.library;
+package com.github.tdotdm.timesheet.library.service;
 
+import com.github.tdotdm.timesheet.library.domain.Timesheet;
+import com.github.tdotdm.timesheet.library.validator.TimesheetValidator;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import lombok.RequiredArgsConstructor;
@@ -14,7 +16,7 @@ import java.util.Optional;
 @Component
 @RequiredArgsConstructor
 @SuppressWarnings("MultipleStringLiterals")
-final class TimesheetService {
+public final class TimesheetService {
     private final Gson gson = new GsonBuilder().create();
 
     private final LocationService locationService;
@@ -23,27 +25,27 @@ final class TimesheetService {
     boolean write(final Timesheet timesheet) {
         final Optional<String> optionalTimesheetLocation = locationService.getTimesheetLocation();
         if (optionalTimesheetLocation.isEmpty()) {
-            log.error("Cannot get Timesheet's location.");
+            log.error("Cannot get location of time sheet.");
             return false;
         }
 
         final List<String> errors = timesheetValidator.validate(timesheet);
         if (!errors.isEmpty()) {
-            log.error("Invalid Timesheet:'{}'.", errors.toString());
+            log.error("Time sheet is invalid, and has the following errors: '{}'.", errors.toString());
             return false;
         }
 
         try {
             final String timesheetLocation = optionalTimesheetLocation.get();
-            log.info("Writing Timesheet to '{}'.", timesheetLocation);
+            log.info("Time sheet is being written to '{}'.", timesheetLocation);
             final Writer fileWriter = new FileWriter(timesheetLocation);
             gson.toJson(timesheet, fileWriter);
             fileWriter.flush();
             fileWriter.close();
-            log.info("Timesheet successfully written.");
+            log.info("Time sheet successfully written.");
             return true;
         } catch (final IOException e) {
-            log.error("Error encountered whilst writing.");
+            log.error("Error encountered whilst writing time sheet.");
         }
 
         return false;
@@ -52,13 +54,13 @@ final class TimesheetService {
     public Timesheet read() {
         final Optional<String> optionalTimesheetLocation = locationService.getTimesheetLocation();
         if (optionalTimesheetLocation.isEmpty()) {
-            log.error("Cannot get Timesheet's location.");
+            log.info("Cannot get location of time sheet; using new time sheet.");
             return new Timesheet();
         }
 
         try {
             final String timesheetLocation = optionalTimesheetLocation.get();
-            log.info("Reading Timesheet from '{}'.", timesheetLocation);
+            log.info("Time sheet is being read from '{}'.", timesheetLocation);
             final Timesheet timesheet = gson.fromJson(new FileReader(timesheetLocation), Timesheet.class);
             if (timesheet != null) {
                 return timesheet;
@@ -67,17 +69,7 @@ final class TimesheetService {
             //ignore
         }
 
-        log.error("Timesheet either empty or non-existent; no Records will be available.");
+        log.info("Time sheet is either empty or non-existent; using a new time sheet to prevent further errors.");
         return new Timesheet();
-    }
-
-    public Optional<Record> getLatestRecord(final Timesheet timesheet) {
-        final List<Record> records = timesheet.getRecords();
-        if (records.isEmpty()) {
-            return Optional.empty();
-        }
-
-        final Record latestRecord = records.get(records.size() - 1);
-        return Optional.ofNullable(latestRecord);
     }
 }
