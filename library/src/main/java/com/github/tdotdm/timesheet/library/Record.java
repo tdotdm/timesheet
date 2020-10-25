@@ -17,6 +17,7 @@ final class Record {
     private String dateCreated;
     private int weekNumber;
     private DayOfWeek dayOfWeek;
+    private double hoursLogged = 0; //e.g. 8.25
     private final List<Entry> entries = new ArrayList<>();
 
     Record(final LocalDateTime timestamp,
@@ -30,5 +31,9 @@ final class Record {
 
     public void addEntry(final Entry entry) {
         this.entries.add(entry);
+    }
+
+    public void setHoursLogged(final double totalHoursLogged) {
+        this.hoursLogged = totalHoursLogged;
     }
 }
