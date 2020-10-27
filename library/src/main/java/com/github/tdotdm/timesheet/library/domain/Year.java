@@ -1,6 +1,6 @@
 package com.github.tdotdm.timesheet.library.domain;
 
-import lombok.Getter;
+import lombok.Data;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -8,9 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-@Getter
+@Data
 public final class Year {
-    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("HH:mm:ss");
+    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
     private UUID id;
     private String timestamp;

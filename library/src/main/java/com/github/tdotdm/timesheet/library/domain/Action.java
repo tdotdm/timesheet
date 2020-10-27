@@ -8,7 +8,7 @@ import java.util.UUID;
 
 @Getter
 public final class Action {
-    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("HH:mm:ss");
+    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
     private UUID id;
     private String timestamp;
