@@ -19,7 +19,7 @@
     <artifactId>timesheet</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>timesheet</name>
-    <description>Project for managing a local timesheet.</description>
+    <description>Project for managing a local time sheet.</description>
     <packaging>pom</packaging>
 
     <properties>
