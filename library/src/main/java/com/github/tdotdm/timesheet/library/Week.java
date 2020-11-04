@@ -1,4 +1,4 @@
-package com.github.tdotdm.timesheet.library.domain;
+package com.github.tdotdm.timesheet.library;
 
 import lombok.Data;
 
@@ -11,7 +11,7 @@ import java.util.Locale;
 import java.util.UUID;
 
 @Data
-public final class Week {
+final class Week {
     private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
     private static final WeekFields WEEK_FIELDS = WeekFields.of(Locale.getDefault());
 
@@ -21,13 +21,13 @@ public final class Week {
     private int weekNumber;
     private final List<Day> days = new ArrayList<>();
 
-    public Week(final LocalDateTime localDateTime) {
+    Week(final LocalDateTime localDateTime) {
         this.id = UUID.randomUUID();
         this.timestamp = localDateTime.format(DATE_TIME_FORMATTER);
         this.weekNumber = localDateTime.get(WEEK_FIELDS.weekOfWeekBasedYear());
     }
 
-    public void addDay(final Day day) {
+    void addDay(final Day day) {
         this.days.add(day);
     }
 }

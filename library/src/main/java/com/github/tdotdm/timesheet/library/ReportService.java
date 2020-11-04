@@ -1,6 +1,5 @@
-package com.github.tdotdm.timesheet.library.service;
+package com.github.tdotdm.timesheet.library;
 
-import com.github.tdotdm.timesheet.library.domain.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -18,7 +17,7 @@ import java.util.Optional;
 @Slf4j
 @Component
 @RequiredArgsConstructor
-public class ReportService {
+public final class ReportService {
     private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
     private static final NumberFormat DECIMAL_FORMAT = new DecimalFormat("#0.00");
 

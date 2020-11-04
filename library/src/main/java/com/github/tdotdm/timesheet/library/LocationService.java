@@ -1,4 +1,4 @@
-package com.github.tdotdm.timesheet.library.service;
+package com.github.tdotdm.timesheet.library;
 
 import java.util.Optional;
 

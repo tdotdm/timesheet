@@ -1,4 +1,4 @@
-package com.github.tdotdm.timesheet.library.domain;
+package com.github.tdotdm.timesheet.library;
 
 import lombok.Getter;
 
@@ -7,10 +7,10 @@ import java.util.List;
 import java.util.Optional;
 
 @Getter
-public final class Timesheet {
+final class Timesheet {
     private final List<Year> years = new ArrayList<>();
 
-    public Optional<Year> getLatestYear() {
+    Optional<Year> getLatestYear() {
         if (years.isEmpty()) {
             return Optional.empty();
         }
@@ -18,7 +18,7 @@ public final class Timesheet {
         return Optional.of(years.get(years.size() - 1));
     }
 
-    public Optional<Week> getLatestWeek() {
+    Optional<Week> getLatestWeek() {
         if (years.isEmpty()) {
             return Optional.empty();
         }
@@ -32,7 +32,7 @@ public final class Timesheet {
         return Optional.of(weeks.get(weeks.size() - 1));
     }
 
-    public Optional<Day> getLatestDay() {
+    Optional<Day> getLatestDay() {
         final Optional<Week> optionalLatestWeek = getLatestWeek();
         if (optionalLatestWeek.isEmpty()) {
             return Optional.empty();
@@ -47,7 +47,7 @@ public final class Timesheet {
         return Optional.of(days.get(days.size() - 1));
     }
 
-    public void addYear(final Year year) {
+    void addYear(final Year year) {
         this.years.add(year);
     }
 }

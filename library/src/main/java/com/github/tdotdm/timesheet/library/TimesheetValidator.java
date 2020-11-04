@@ -1,6 +1,5 @@
-package com.github.tdotdm.timesheet.library.validator;
+package com.github.tdotdm.timesheet.library;
 
-import com.github.tdotdm.timesheet.library.domain.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
@@ -10,7 +9,7 @@ import java.util.List;
 
 @Slf4j
 @Component
-public final class TimesheetValidator {
+final class TimesheetValidator {
     public List<String> validate(final Timesheet timesheet) {
         final List<String> errors = new ArrayList<>();
         validateYears(timesheet, errors);

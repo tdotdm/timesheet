@@ -1,7 +1,5 @@
-package com.github.tdotdm.timesheet.library.service;
+package com.github.tdotdm.timesheet.library;
 
-import com.github.tdotdm.timesheet.library.domain.Timesheet;
-import com.github.tdotdm.timesheet.library.validator.TimesheetValidator;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import lombok.RequiredArgsConstructor;
@@ -16,7 +14,7 @@ import java.util.Optional;
 @Component
 @RequiredArgsConstructor
 @SuppressWarnings("MultipleStringLiterals")
-public final class TimesheetService {
+final class TimesheetService {
     private final Gson gson = new GsonBuilder().create();
     private final LocationService locationService;
     private final TimesheetValidator timesheetValidator;
@@ -50,7 +48,7 @@ public final class TimesheetService {
         return false;
     }
 
-    public Timesheet read() {
+    Timesheet read() {
         final Optional<String> optionalTimesheetLocation = locationService.getTimesheetLocation();
         if (optionalTimesheetLocation.isEmpty()) {
             log.info("Cannot get location of time sheet; using new time sheet.");

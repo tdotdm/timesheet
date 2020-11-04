@@ -1,7 +1,7 @@
 package com.github.tdotdm.timesheet.checkin;
 
-import com.github.tdotdm.timesheet.library.domain.Action;
-import com.github.tdotdm.timesheet.library.service.CheckService;
+import com.github.tdotdm.timesheet.library.Action;
+import com.github.tdotdm.timesheet.library.CheckService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;

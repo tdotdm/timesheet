@@ -1,4 +1,4 @@
-package com.github.tdotdm.timesheet.library.domain;
+package com.github.tdotdm.timesheet.library;
 
 import lombok.Getter;
 

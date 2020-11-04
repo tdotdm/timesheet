@@ -1,6 +1,5 @@
-package com.github.tdotdm.timesheet.library.service;
+package com.github.tdotdm.timesheet.library;
 
-import com.github.tdotdm.timesheet.library.domain.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;

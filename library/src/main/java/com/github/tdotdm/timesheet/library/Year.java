@@ -1,8 +1,7 @@
-package com.github.tdotdm.timesheet.library.domain;
+package com.github.tdotdm.timesheet.library;
 
 import lombok.Data;
 
-import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -10,22 +9,23 @@ import java.util.List;
 import java.util.UUID;
 
 @Data
-public final class Day {
+final class Year {
     private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
     private UUID id;
     private String timestamp;
     private double totalHours;
-    private DayOfWeek day;
-    private List<Action> entries = new ArrayList<>();
+    private int value;
+    private final List<Week> weeks = new ArrayList<>();
 
-    public Day(final LocalDateTime localDateTime) {
+    Year(final LocalDateTime localDateTime,
+         final int value) {
         this.id = UUID.randomUUID();
         this.timestamp = localDateTime.format(DATE_TIME_FORMATTER);
-        this.day = localDateTime.getDayOfWeek();
+        this.value = value;
     }
 
-    public void addEntry(final Action action) {
-        this.entries.add(action);
+    void addWeek(final Week week) {
+        this.weeks.add(week);
     }
 }
