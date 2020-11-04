@@ -18,7 +18,6 @@ import java.util.Optional;
 @SuppressWarnings("MultipleStringLiterals")
 public final class TimesheetService {
     private final Gson gson = new GsonBuilder().create();
-
     private final LocationService locationService;
     private final TimesheetValidator timesheetValidator;
 
