@@ -34,7 +34,7 @@ final class Timesheet {
 
     Optional<Day> getLatestDay() {
         final Optional<Week> optionalLatestWeek = getLatestWeek();
-        if (optionalLatestWeek.isEmpty()) {
+        if (!optionalLatestWeek.isPresent()) {
             return Optional.empty();
         }
 

@@ -38,7 +38,7 @@ public final class CheckService {
 
     private boolean isWorkingDirectoryReady() {
         final Optional<String> optionalTimesheetLocation = locationService.getTimesheetLocation();
-        if (optionalTimesheetLocation.isEmpty()) {
+        if (!optionalTimesheetLocation.isPresent()) {
             log.error("Cannot get location of time sheet.");
 
             return false;

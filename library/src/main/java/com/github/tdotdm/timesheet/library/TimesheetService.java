@@ -21,7 +21,7 @@ final class TimesheetService {
 
     boolean write(final Timesheet timesheet) {
         final Optional<String> optionalTimesheetLocation = locationService.getTimesheetLocation();
-        if (optionalTimesheetLocation.isEmpty()) {
+        if (!optionalTimesheetLocation.isPresent()) {
             log.error("Cannot get location of time sheet.");
             return false;
         }
@@ -50,7 +50,7 @@ final class TimesheetService {
 
     Timesheet read() {
         final Optional<String> optionalTimesheetLocation = locationService.getTimesheetLocation();
-        if (optionalTimesheetLocation.isEmpty()) {
+        if (!optionalTimesheetLocation.isPresent()) {
             log.info("Cannot get location of time sheet; using new time sheet.");
             return new Timesheet();
         }
