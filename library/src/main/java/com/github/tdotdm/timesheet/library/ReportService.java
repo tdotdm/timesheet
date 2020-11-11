@@ -139,24 +139,22 @@ public final class ReportService {
     private void logTotalHours(final Timesheet timesheet) {
         log.info("********** TIMESHEET REPORT **********");
         timesheet
-                .getLatestDay()
-                .ifPresent(latestDay -> {
-                    final String day = latestDay.getDay().getDisplayName(TextStyle.FULL, Locale.UK);
-                    log.info("Day: {}. Hours: {}", day, DECIMAL_FORMAT.format(latestDay.getTotalHours()));
+                .getLatestYear()
+                .ifPresent(latestYear -> {
+                    final int year = latestYear.getValue();
+                    log.info("Year: {}. Hours: {}.", year, DECIMAL_FORMAT.format(latestYear.getTotalHours()));
                 });
-
         timesheet
                 .getLatestWeek()
                 .ifPresent(latestWeek -> {
                     final int weekNumber = latestWeek.getWeekNumber();
-                    log.info("Week Number: {}. Hours: {}", weekNumber, DECIMAL_FORMAT.format(latestWeek.getTotalHours()));
+                    log.info("Week Number: {}. Hours: {}.", weekNumber, DECIMAL_FORMAT.format(latestWeek.getTotalHours()));
                 });
-
         timesheet
-                .getLatestYear()
-                .ifPresent(latestYear -> {
-                    final int year = latestYear.getValue();
-                    log.info("Year: {}. Hours: {}", year, DECIMAL_FORMAT.format(latestYear.getTotalHours()));
+                .getLatestDay()
+                .ifPresent(latestDay -> {
+                    final String day = latestDay.getDay().getDisplayName(TextStyle.FULL, Locale.UK);
+                    log.info("Day: {}. Hours: {}.", day, DECIMAL_FORMAT.format(latestDay.getTotalHours()));
                 });
         log.info("**************************************");
     }
