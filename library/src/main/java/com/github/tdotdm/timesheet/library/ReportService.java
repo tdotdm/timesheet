@@ -11,7 +11,9 @@ import java.text.NumberFormat;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.TextStyle;
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
 
 @Slf4j
@@ -133,23 +135,29 @@ public final class ReportService {
         }
     }
 
+    @SuppressWarnings("MultipleStringLiterals")
     private void logTotalHours(final Timesheet timesheet) {
+        log.info("********** TIMESHEET REPORT **********");
         timesheet
                 .getLatestDay()
                 .ifPresent(latestDay -> {
-                    log.info("Total Hours for latest day: {}", DECIMAL_FORMAT.format(latestDay.getTotalHours()));
+                    final String day = latestDay.getDay().getDisplayName(TextStyle.FULL, Locale.UK);
+                    log.info("Day: {}. Hours: {}", day, DECIMAL_FORMAT.format(latestDay.getTotalHours()));
                 });
 
         timesheet
                 .getLatestWeek()
                 .ifPresent(latestWeek -> {
-                    log.info("Total Hours for latest week: {}", DECIMAL_FORMAT.format(latestWeek.getTotalHours()));
+                    final int weekNumber = latestWeek.getWeekNumber();
+                    log.info("Week Number: {}. Hours: {}", weekNumber, DECIMAL_FORMAT.format(latestWeek.getTotalHours()));
                 });
 
         timesheet
                 .getLatestYear()
                 .ifPresent(latestYear -> {
-                    log.info("Total Hours for latest year: {}", DECIMAL_FORMAT.format(latestYear.getTotalHours()));
+                    final int year = latestYear.getValue();
+                    log.info("Year: {}. Hours: {}", year, DECIMAL_FORMAT.format(latestYear.getTotalHours()));
                 });
+        log.info("**************************************");
     }
 }
