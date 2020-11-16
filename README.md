@@ -10,8 +10,8 @@ The table below details each JAR file:
 
 | Number           | JAR        | Use Case           | Command           | 
 | :-------------: | :-------------: |  :-------------: |:-------------:| 
-| 1 | checkin.jar| Adding an IN entry to the time sheet. | `java -jar checkin.jar` | 
-| 2 | checkout.jar| Adding an OUT entry to the time sheet. | `java -jar checkout.jar` | 
+| 1 | checkin.jar| Add an IN entry to the time sheet. | `java -jar checkin.jar` | 
+| 2 | checkout.jar| Add an OUT entry to the time sheet. | `java -jar checkout.jar` | 
 | 3 | report.jar| Produce a report on the total hours logged. | `java -jar report.jar` | 
 
 #### Setting up (for IDE)
