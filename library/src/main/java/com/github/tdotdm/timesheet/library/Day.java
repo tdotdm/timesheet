@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Data
@@ -27,5 +28,14 @@ final class Day {
 
     void addEntry(final Action action) {
         this.entries.add(action);
+    }
+
+    Optional<Action> getLatestEntry() {
+        if (this.entries.isEmpty()) {
+            return Optional.empty();
+        }
+
+        final Action latestAction = this.entries.get(this.entries.size() - 1);
+        return Optional.of(latestAction);
     }
 }
