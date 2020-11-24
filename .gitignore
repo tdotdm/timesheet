@@ -31,3 +31,15 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Other ###
+bin/
+checkin/pom.xml.versionsBackup
+checkin/timesheet.json
+checkout/pom.xml.versionsBackup
+checkout/timesheet.json
+library/pom.xml.versionsBackup
+pom.xml.versionsBackup
+report/pom.xml.versionsBackup
+report/timesheet.json
+timesheet.json
