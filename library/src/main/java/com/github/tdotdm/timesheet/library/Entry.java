@@ -7,15 +7,15 @@ import java.time.format.DateTimeFormatter;
 import java.util.UUID;
 
 @Getter
-public final class Action {
+public final class Entry {
     private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
     private UUID id;
     private String timestamp;
-    private Action.Type type;
+    private Entry.Type type;
 
-    public Action(final Action.Type action,
-                  final LocalDateTime timestamp) {
+    public Entry(final Entry.Type action,
+                 final LocalDateTime timestamp) {
         this.id = UUID.randomUUID();
         this.timestamp = timestamp.format(DATE_TIME_FORMATTER);
         this.type = action;

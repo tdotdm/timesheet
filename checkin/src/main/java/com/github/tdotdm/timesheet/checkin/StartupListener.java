@@ -1,6 +1,6 @@
 package com.github.tdotdm.timesheet.checkin;
 
-import com.github.tdotdm.timesheet.library.Action;
+import com.github.tdotdm.timesheet.library.Entry;
 import com.github.tdotdm.timesheet.library.CheckService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
@@ -13,6 +13,6 @@ public class StartupListener implements CommandLineRunner {
 
     @Override
     public void run(final String... args) {
-        checkService.check(Action.Type.IN);
+        checkService.check(Entry.Type.IN);
     }
 }

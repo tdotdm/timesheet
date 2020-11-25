@@ -78,19 +78,19 @@ public final class ReportService {
             for (Week week : weeks) {
                 final List<Day> days = week.getDays();
                 for (Day day : days) {
-                    final List<Action> entries = day.getEntries();
+                    final List<Entry> entries = day.getEntries();
                     final int size = entries.size();
                     double totalHoursForDay = 0;
                     nextEntry:
                     for (int x = 1; x < size; x++) {
-                        final Action currentAction = entries.get(x);
-                        if (Action.Type.IN.equals(currentAction.getType())) {
+                        final Entry currentEntry = entries.get(x);
+                        if (Entry.Type.IN.equals(currentEntry.getType())) {
                             continue nextEntry;
                         }
-                        final Action previousAction = entries.get(x - 1);
+                        final Entry previousEntry = entries.get(x - 1);
 
-                        final String currentActionTimestamp = currentAction.getTimestamp();
-                        final String previousActionTimestamp = previousAction.getTimestamp();
+                        final String currentActionTimestamp = currentEntry.getTimestamp();
+                        final String previousActionTimestamp = previousEntry.getTimestamp();
 
                         final LocalDateTime currentTimestamp = LocalDateTime.parse(currentActionTimestamp, DATE_TIME_FORMATTER);
                         final LocalDateTime previousTimestamp = LocalDateTime.parse(previousActionTimestamp, DATE_TIME_FORMATTER);

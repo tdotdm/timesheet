@@ -25,7 +25,7 @@ public class StatusService {
                     .flatMap(Day::getLatestEntry)
                     .ifPresent(latestEntry -> {
                         final String timestamp = latestEntry.getTimestamp();
-                        final Action.Type type = latestEntry.getType();
+                        final Entry.Type type = latestEntry.getType();
 
                         logStatus(timestamp, type);
                     });
@@ -61,10 +61,10 @@ public class StatusService {
     }
 
     private void logStatus(final String timestamp,
-                           final Action.Type type) {
-        log.info("********** TIMESHEET STATUS **********");
+                           final Entry.Type type) {
+        log.info("********** TIMESHEET LATEST **********");
         log.info("Timestamp: {}.", timestamp);
-        log.info("Action.Type: {}.", type);
+        log.info("Entry.Type: {}.", type);
         log.info("**************************************");
     }
 }
