@@ -8,6 +8,7 @@
         <module>library</module>
         <module>checkout</module>
         <module>report</module>
+        <module>status</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

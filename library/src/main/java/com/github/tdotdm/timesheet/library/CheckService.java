@@ -19,7 +19,7 @@ public final class CheckService {
     private final LocationService locationService;
     private final TimesheetService timesheetService;
 
-    public void check(final Action.Type type) {
+    public void check(final Entry.Type type) {
         final boolean workingDirectoryIsReady = isWorkingDirectoryReady();
         if (workingDirectoryIsReady) {
             final Timesheet timesheet = timesheetService.read();
@@ -133,14 +133,14 @@ public final class CheckService {
 
     private void addNewEntryToDay(final Timesheet timesheet,
                                   final LocalDateTime localDateTime,
-                                  final Action.Type type) {
-        log.info("Adding new Action to time sheet.");
+                                  final Entry.Type type) {
+        log.info("Adding new Entry to time sheet.");
         final Optional<Day> optionalLatestDay = timesheet.getLatestDay();
         if (optionalLatestDay.isPresent()) {
             final Day latestDay = optionalLatestDay.get();
 
-            final Action action = new Action(type, localDateTime);
-            latestDay.addEntry(action);
+            final Entry entry = new Entry(type, localDateTime);
+            latestDay.addEntry(entry);
         }
     }
 }

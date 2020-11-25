@@ -103,20 +103,20 @@ final class TimesheetValidator {
             for (Week week : weeks) {
                 final List<Day> days = week.getDays();
                 for (Day day : days) {
-                    final List<Action> entries = day.getEntries();
+                    final List<Entry> entries = day.getEntries();
                     if (entries.isEmpty()) {
                         errors.add("No entries present in time sheet.");
                     }
 
                     final int size = entries.size();
                     if (size > 1) {
-                        final Action lastAction = entries.get(size - 1);
-                        final Action secondLastAction = entries.get(size - 2);
+                        final Entry lastEntry = entries.get(size - 1);
+                        final Entry secondLastEntry = entries.get(size - 2);
 
-                        final Action.Type lastYearValue = lastAction.getType();
-                        final Action.Type secondLastEntryValue = secondLastAction.getType();
+                        final Entry.Type lastYearValue = lastEntry.getType();
+                        final Entry.Type secondLastEntryValue = secondLastEntry.getType();
                         if (lastYearValue == secondLastEntryValue) {
-                            errors.add("Two sequential actions have the same value.");
+                            errors.add("Two sequential entries have the same value.");
                         }
                     }
                 }

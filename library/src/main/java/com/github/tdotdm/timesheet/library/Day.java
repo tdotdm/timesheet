@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Data
@@ -17,7 +18,7 @@ final class Day {
     private String timestamp;
     private double totalHours;
     private DayOfWeek day;
-    private List<Action> entries = new ArrayList<>();
+    private List<Entry> entries = new ArrayList<>();
 
     Day(final LocalDateTime localDateTime) {
         this.id = UUID.randomUUID();
@@ -25,7 +26,16 @@ final class Day {
         this.day = localDateTime.getDayOfWeek();
     }
 
-    void addEntry(final Action action) {
-        this.entries.add(action);
+    void addEntry(final Entry entry) {
+        this.entries.add(entry);
+    }
+
+    Optional<Entry> getLatestEntry() {
+        if (this.entries.isEmpty()) {
+            return Optional.empty();
+        }
+
+        final Entry latestEntry = this.entries.get(this.entries.size() - 1);
+        return Optional.of(latestEntry);
     }
 }

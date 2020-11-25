@@ -32,13 +32,10 @@ final class TimesheetService {
             return false;
         }
 
-        try {
-            final String timesheetLocation = optionalTimesheetLocation.get();
+        final String timesheetLocation = optionalTimesheetLocation.get();
+        try (final Writer fileWriter = new FileWriter(timesheetLocation)) {
             log.info("Time sheet is being written to '{}'.", timesheetLocation);
-            final Writer fileWriter = new FileWriter(timesheetLocation);
             gson.toJson(timesheet, fileWriter);
-            fileWriter.flush();
-            fileWriter.close();
             log.info("Time sheet successfully written.");
             return true;
         } catch (final IOException e) {
