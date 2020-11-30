@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<!DOCTYPE module PUBLIC "-//Puppy Crawl//DTD Check Configuration 1.1//EN"
+        "http://www.puppycrawl.com/dtds/configuration_1_1.dtd">
+<module name="Checker">
+    <property name="localeLanguage" value="en"/>
+    <!-- Allow for SuppressWarnings annotation -->
+    <module name="SuppressWarningsFilter"/>
+    <module name="TreeWalker">
+        <module name="SuppressWarningsHolder"/>
+        <module name="FileContentsHolder"/>
+        <module name="SuppressWarnings"/>
+        <!-- Operator must be at end of wrapped line -->
+        <module name="OperatorWrap">
+            <property name="option" value="eol"/>
+        </module>
+        <!-- No if/else/do/for/while without braces -->
+        <module name="NeedBraces"/>
+        <!-- No public fields -->
+        <module name="VisibilityModifier">
+            <property name="protectedAllowed" value="true"/>
+        </module>
+        <!-- Require hash code override when equals is -->
+        <module name="EqualsHashCode"/>
+        <!-- Disallow unnecessary instantiation of Boolean, String -->
+        <module name="IllegalInstantiation">
+            <property name="classes" value="java.lang.Boolean, java.lang.String"/>
+        </module>
+        <module name="UnusedImports"/>
+        <module name="IllegalImport"/>
+        <!-- Utility class should not be instantiated, they must have a private constructor -->
+        <module name="HideUtilityClassConstructor"/>
+        <!-- Switch statements should be complete and with independent cases -->
+        <module name="FallThrough"/>
+        <module name="MissingSwitchDefault"/>
+        <!-- Constant names should obey the traditional all uppercase naming convention -->
+        <module name="ConstantName"/>
+        <!-- No trailing whitespace -->
+        <module name="Regexp">
+            <property name="format" value="[ \t]+$"/>
+            <property name="illegalPattern" value="true"/>
+            <property name="message" value="Trailing whitespace"/>
+        </module>
+        <!-- No System.out.println() statements -->
+        <module name="Regexp">
+            <property name="format" value="System\.out\.println"/>
+            <property name="illegalPattern" value="true"/>
+        </module>
+        <!-- Authors should be in pom.xml file -->
+        <!--        <module name="Regexp">-->
+        <!--            <property name="format" value="@author"/>-->
+        <!--            <property name="illegalPattern" value="true"/>-->
+        <!--            <property name="message" value="developers names should be in pom file"/>-->
+        <!--        </module>-->
+        <!-- Use a consistent way to put modifiers -->
+        <module name="RedundantModifier"/>
+        <module name="ModifierOrder"/>
+        <!-- Use a consistent way to put declarations -->
+        <module name="DeclarationOrder"/>
+        <!-- Don't add up parentheses when they are not required -->
+        <module name="UnnecessaryParentheses"/>
+        <!--  Don't use too widespread catch (Exception, Throwable, RuntimeException)  -->
+        <module name="IllegalCatch"/>
+        <!-- Don't use = or != for string comparisons -->
+        <module name="StringLiteralEquality"/>
+        <!-- Don't declare multiple variables in the same statement -->
+        <module name="MultipleVariableDeclarations"/>
+        <!-- String literals more than one character long should not be repeated several times -->
+        <!-- the "unchecked" string is also accepted to allow @SuppressWarnings("unchecked") -->
+        <module name="MultipleStringLiterals">
+            <property name="ignoreStringsRegexp" value='^(("")|(".")|("unchecked"))$'/>
+        </module>
+        <!-- Variables and parameters must be final -->
+        <module name="FinalLocalVariable">
+            <property name="tokens" value="VARIABLE_DEF,PARAMETER_DEF"/>
+        </module>
+    </module>
+    <!-- No tabs allowed! -->
+    <module name="FileTabCharacter"/>
+    <!-- Comment Filters -->
+    <module name="SuppressionCommentFilter">
+        <property name="offCommentFormat" value="Checkstyle Pause: (\w+)"/>
+        <property name="onCommentFormat" value="Checkstyle Resume: (\w+)"/>
+    </module>
+</module>

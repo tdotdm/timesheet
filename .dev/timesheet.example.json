@@ -1,0 +1,160 @@
+{
+  "years": [
+    {
+      "id": "e79ce301-38b3-47b5-b454-2ee61689d3a3",
+      "timestamp": "2020-10-26 08:50:00",
+      "totalHours": 41.66666666666667,
+      "value": 2020,
+      "weeks": [
+        {
+          "id": "aec91c76-4eaa-47b3-84f5-d64f01de9b1e",
+          "timestamp": "2020-10-26 08:50:00",
+          "totalHours": 41.66666666666667,
+          "weekNumber": 44,
+          "days": [
+            {
+              "id": "f009597b-236b-4bbb-996b-d0972b416543",
+              "timestamp": "2020-10-26 08:50:00",
+              "totalHours": 8.333333333333334,
+              "day": "MONDAY",
+              "entries": [
+                {
+                  "id": "9c01ed03-f186-4c57-bf86-577980538516",
+                  "timestamp": "2020-10-26 08:50:00",
+                  "type": "IN"
+                },
+                {
+                  "id": "db1d315e-cef4-4ed9-9b5e-114249cf8aed",
+                  "timestamp": "2020-10-26 12:30:00",
+                  "type": "OUT"
+                },
+                {
+                  "id": "efe94b78-2a3e-4de8-b7d0-27b06a5cb5e5",
+                  "timestamp": "2020-10-26 13:30:00",
+                  "type": "IN"
+                },
+                {
+                  "id": "a47344a5-ff39-4188-ad5e-b1a3e92a80af",
+                  "timestamp": "2020-10-26 18:10:00",
+                  "type": "OUT"
+                }
+              ]
+            },
+            {
+              "id": "7bca0eb2-9e79-48c8-b26a-b5872f364ff5",
+              "timestamp": "2020-10-27 08:50:00",
+              "totalHours": 8.333333333333334,
+              "day": "TUESDAY",
+              "entries": [
+                {
+                  "id": "57409267-883c-4b49-a635-265df2d56549",
+                  "timestamp": "2020-10-27 08:50:00",
+                  "type": "IN"
+                },
+                {
+                  "id": "4ae10dfc-2ed4-4e07-a6c2-7399ee25807d",
+                  "timestamp": "2020-10-27 12:30:00",
+                  "type": "OUT"
+                },
+                {
+                  "id": "f8296348-f3f1-42cf-8279-e218f9bb8efb",
+                  "timestamp": "2020-10-27 13:30:00",
+                  "type": "IN"
+                },
+                {
+                  "id": "90124a02-651e-4aff-8b54-bb4b899d62b9",
+                  "timestamp": "2020-10-27 18:10:00",
+                  "type": "OUT"
+                }
+              ]
+            },
+            {
+              "id": "7a31ffc8-c35e-4c1f-bbba-7ae4a858cfeb",
+              "timestamp": "2020-10-28 08:50:00",
+              "totalHours": 8.333333333333334,
+              "day": "WEDNESDAY",
+              "entries": [
+                {
+                  "id": "bf0359e2-cf37-446d-bf57-d2456dca5093",
+                  "timestamp": "2020-10-28 08:50:00",
+                  "type": "IN"
+                },
+                {
+                  "id": "05c7fea0-cde0-4ab7-84d1-0667fc2f617e",
+                  "timestamp": "2020-10-28 12:30:00",
+                  "type": "OUT"
+                },
+                {
+                  "id": "65e69684-cb60-4d05-80b9-d5b6f98d7ba6",
+                  "timestamp": "2020-10-28 13:30:00",
+                  "type": "IN"
+                },
+                {
+                  "id": "de57e39c-916d-4545-bc57-bc03661acda1",
+                  "timestamp": "2020-10-28 18:10:00",
+                  "type": "OUT"
+                }
+              ]
+            },
+            {
+              "id": "874ab229-83af-46a2-9085-f4bb6f604de2",
+              "timestamp": "2020-10-29 08:50:00",
+              "totalHours": 8.333333333333334,
+              "day": "THURSDAY",
+              "entries": [
+                {
+                  "id": "a63533be-31a2-487a-a56a-925938ede4c6",
+                  "timestamp": "2020-10-29 08:50:00",
+                  "type": "IN"
+                },
+                {
+                  "id": "4ca6e0fa-bdc9-40c1-9b49-ab147e990230",
+                  "timestamp": "2020-10-29 12:30:00",
+                  "type": "OUT"
+                },
+                {
+                  "id": "d91feda3-b37e-4360-8c68-eed8b77af892",
+                  "timestamp": "2020-10-29 13:30:00",
+                  "type": "IN"
+                },
+                {
+                  "id": "2675d74f-4f30-441a-b8aa-7a3f5e5d0d3f",
+                  "timestamp": "2020-10-29 18:10:00",
+                  "type": "OUT"
+                }
+              ]
+            },
+            {
+              "id": "ae20575d-44cd-4248-b3d3-623b983d0e7a",
+              "timestamp": "2020-10-30 08:50:00",
+              "totalHours": 8.333333333333334,
+              "day": "FRIDAY",
+              "entries": [
+                {
+                  "id": "8bd0b408-8dba-4603-8cd3-28dd16868464",
+                  "timestamp": "2020-10-30 08:50:00",
+                  "type": "IN"
+                },
+                {
+                  "id": "0119d0f6-71a8-4805-ad08-1af3c81b41f9",
+                  "timestamp": "2020-10-30 12:30:00",
+                  "type": "OUT"
+                },
+                {
+                  "id": "6ba8e0b3-2cfe-4677-b427-f4369c427a7d",
+                  "timestamp": "2020-10-30 13:30:00",
+                  "type": "IN"
+                },
+                {
+                  "id": "99a7639e-7782-4200-9227-83ed7cc285e9",
+                  "timestamp": "2020-10-30 18:10:00",
+                  "type": "OUT"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
